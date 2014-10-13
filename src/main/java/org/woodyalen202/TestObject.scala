@@ -16,6 +16,15 @@ object TestObject {
             }
         } else {
             Console.err.println("please enter filename")
+            val filename = "/home/sunlichuan/script/h.sh"
+            val lines = Source.fromFile(filename).getLines().toList;
+//            val longLine = lines.reduceLeft((a,b)=>if(a.length > b.length) a else b);
+            val lenghts = for (x <- lines) yield x.length;
+            val lenghest = lenghts.reduceLeft((a, b) => if (a > b) a else b);
+            for (x <- lines) {
+                var padding = " " * (lenghest.toString.length - x.length.toString.length)
+                println(padding + x.length + "|" + x)
+            }
         }
     }
 
